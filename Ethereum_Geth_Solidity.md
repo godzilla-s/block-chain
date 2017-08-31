@@ -1,6 +1,7 @@
-###  以太坊 使用
+##  以太坊相关
 
-## Geth
+### Geth
+==================
 关于geth 1.6 没法使用solidity 内嵌的编译 <br>
 解决方法 <br>
 1. 生产 bytecode: <br>
@@ -17,7 +18,20 @@
   myDeploy = {from:eth.coinbase, data: bytecode, gas: 1000000} <br>
   myContInst = myContract.new(txDeploy) <br>
 
-  //启动挖矿
+  //启动挖矿 <br>
   
   myInst = myContract.at(myContInst.address) <br>
   
+  //调用 <br>
+  myInst.<function>.call(argv, ....)  // function 函数名 <br>
+  
+参考： https://ethereum.stackexchange.com/questions/15435/how-to-compile-solidity-contracts-with-geth-v1-6/15436 <br>
+      http://blog.csdn.net/jwter87/article/details/53445709 <br>
+      http://blog.csdn.net/CHENYUFENG1991/article/details/53458175?locationNum=7&fps=1 <br>
+      
+
+### 关于solc 使用
+==================
+
+参考： https://zhuanlan.zhihu.com/p/27889205 <br>
+      Solidity 简易教程: http://wiki.jikexueyuan.com/project/solidity-zh/introduction.html <br> 
