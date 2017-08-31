@@ -23,7 +23,7 @@
   myInst = myContract.at(myContInst.address) <br>
   
   //调用 <br>
-  myInst.<function>.call(argv, ....)  // function 函数名 <br>
+  myInst.<function>.call(argv, ....)  // function 函数名 <br>
   
 参考： https://ethereum.stackexchange.com/questions/15435/how-to-compile-solidity-contracts-with-geth-v1-6/15436 <br>
       http://blog.csdn.net/jwter87/article/details/53445709 <br>
