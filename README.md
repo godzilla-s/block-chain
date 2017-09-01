@@ -2,3 +2,6 @@
 ===========================
 
 区块链学堂： http://blog.csdn.net/u011386109/article/details/62422352 <br>
+
+Byteball白皮书: http://www.bitett.com/portal.php?mod=view&aid=438 <br>
+
