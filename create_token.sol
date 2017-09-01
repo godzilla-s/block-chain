@@ -30,7 +30,7 @@ contract MyToken is owner {
   uint256 public totalSupply;   // 代币发行量
   uint256 public sellPrice;     // 代币出售价
   uint256 public buyPrice;      // 代币买入价
-  uint minBalForAcct;
+  uint minBalForAccount;           // 账户最低余额(私有)
   
   mapping (address => uint256) public balanceOf;
   mapping (address => uint256) public frozenAccount;
@@ -53,10 +53,53 @@ contract MyToken is owner {
   
   // 代币转账
   function transfer(address to, uint256 amount) {
+    // 判断是否冻结
     if(frozenAccount[msg.sender])
       throw;
+      
+    // 判断是否足够转出
+    if(balanceOf[msg.sender] < amount) 
+      throw;
+    
+    // ??
     if(balanceOf[to] + amount < balanceOf[to])
       throw;
     
+    Transfer(msg.sender, to, amount);
+  }
+  
+  // 买入
+  function buy() returns (uint amount) {
+    amount = msg.value / buyPrice;  // 买入数量, 以当前汇率来计算
+    if (balanceOf[this] < amount) // 查看是否有足够的出售
+      throw;    
+    balanceOf[msg.sender] += amount; // 购买者增加
+    balanceOf[this] -= amount;   // 总量减少
+    
+    Transfer(this, msg.sender, amount); // 触发转账事件
+    return amount;
+  }
+  
+  // 卖出
+  function sell(uint amount) returns (uint revenue) {
+    if (balanceOf[msg.sender] < amount)
+      throw;
+    balanceOf[this] += amount;
+    balanceOf[msg.sender] -= amount;
+    
+    revenue = amount * sellPrice; // 计算卖出总量
+    msg.sender.send(revenue); // 用户获得因为输出代币得到的以太币 ？
+    Transfer(msg.sender, this, amount);
+    return revenue;
+  }
+  
+  // 设置买入，卖出汇率
+  function setPrice(uint256 newBuyPrice, uint256 newSellPrice) onlyOwner {
+    sellPrice = newSellPrice;
+    buyPrice = newBuyPrice;
+  }
+  
+  function setMinBalance(uint256 newMinBalance) onlyOwner {
+    minBalForAccount = newMinBalance * 1 finney;
   }
 }
