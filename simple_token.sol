@@ -1,4 +1,5 @@
 // 简单代币实现
+pragma solidity ^0.4.10;
 
 contract MyToken {
   mapping (address => uint256) public balanceOf; // 设置一个mapping存储每个账户的代币信息
