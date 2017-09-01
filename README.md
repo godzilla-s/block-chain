@@ -5,3 +5,4 @@
 
 Byteball白皮书: http://www.bitett.com/portal.php?mod=view&aid=438 <br>
 
+关于代币: https://ethereum.org/token
