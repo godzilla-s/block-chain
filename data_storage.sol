@@ -29,3 +29,8 @@ contract Storage {
     return (value_01, value_02[1]);
   }
 }
+
+
+// 总结:
+// 函数参数（括返回参数：memory
+// 所有其它的局部变量：storage
