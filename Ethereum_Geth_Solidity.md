@@ -35,3 +35,8 @@
 
 参考： https://zhuanlan.zhihu.com/p/27889205 <br>
       Solidity 简易教程: http://wiki.jikexueyuan.com/project/solidity-zh/introduction.html <br> 
+
+
+### ERC20 标准
+
+参考： https://github.com/ethereum/EIPs/issues/20
