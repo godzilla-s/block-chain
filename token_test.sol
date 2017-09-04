@@ -89,8 +89,9 @@ contract Token {
         Transfer(this, _target, _mintAmount);
     }
     
+    // 需先充钱到合约账户里面去  也就是 this 账户
     function buy() payable {
-        uint amount = 10;
+        uint amount = msg.value / 100;  // buy Price
         _transfer(this, msg.sender, amount);
     }
 }
