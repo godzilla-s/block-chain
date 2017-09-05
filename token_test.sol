@@ -92,7 +92,7 @@ contract Token {
         Transfer(this, _target, _mintAmount);
     }
     
-    function setPrice(uint _sellPrice, uint _sellPrice) {
+    function setPrice(uint _buyPrice, uint _sellPrice) {
         buyPrice = _buyPrice;
         sellPrice = _sellPrice;
     }
@@ -108,7 +108,7 @@ contract Token {
         require(sellPrice > 0);
         require(this.balance >= _amount * sellPrice);
         _transfer(msg.sender, this, _amount);
-        msg.sender.transfer(amount * sellPrice);
+        msg.sender.transfer(_amount * sellPrice);
     }
     
 }
