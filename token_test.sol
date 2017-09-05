@@ -19,9 +19,12 @@ contract Owner {
 
 contract Token {
     uint256 public initSupply;
-    //uint8 public decimal;
+    uint8 public decimal;
     string public tokenName;
-    //string public tokenSymbol;
+    string public tokenSymbol;
+    
+    uint public sellPrice;
+    uint public buyPrice;
     
     mapping (address => uint256) public balanceOf;
     mapping (address => bool) public frozenAccount;
@@ -30,12 +33,12 @@ contract Token {
     event Transfer(address indexed _from, address indexed _to, uint amount);
     event FrozenFunds(address indexed _target, bool _frozen);
     
-    function Token(uint256 _initSupply, string _tokenName/*, string _tokenSymbol, uint8 _decimal*/) {
+    function Token(uint256 _initSupply, string _tokenName, string _tokenSymbol, uint8 _decimal) {
         initSupply = _initSupply;
         balanceOf[msg.sender] = _initSupply;
         tokenName = _tokenName;
-        //tokenSymbol = _tokenSymbol;
-        //decimal = _decimal;
+        tokenSymbol = _tokenSymbol;
+        decimal = _decimal;
     }
     
     // test
@@ -89,9 +92,23 @@ contract Token {
         Transfer(this, _target, _mintAmount);
     }
     
+    function setPrice(uint _sellPrice, uint _sellPrice) {
+        buyPrice = _buyPrice;
+        sellPrice = _sellPrice;
+    }
+    
     // 需先充钱到合约账户里面去  也就是 this 账户
     function buy() payable {
-        uint amount = msg.value / 100;  // buy Price
+        require(buyPrice > 0);
+        uint amount = msg.value / buyPrice;  
         _transfer(this, msg.sender, amount);
     }
+    
+    function sell(uint _amount) {
+        require(sellPrice > 0);
+        require(this.balance >= _amount * sellPrice);
+        _transfer(msg.sender, this, _amount);
+        msg.sender.transfer(amount * sellPrice);
+    }
+    
 }
