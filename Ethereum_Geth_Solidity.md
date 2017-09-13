@@ -45,3 +45,5 @@
 
 ### 以太坊区块链 -- 学习
 http://blog.csdn.net/fidelhl/article/category/6060944
+
+区块链入门 ： http://www.cnblogs.com/zl03jsj/p/6819333.html
