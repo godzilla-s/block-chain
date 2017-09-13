@@ -41,3 +41,7 @@
 
 参考： ERC20 ： https://github.com/ethereum/EIPs/issues/20 <br>
       标准代币接口： https://github.com/ethereum/wiki/wiki/Standardized_Contract_APIs#data-feeds
+
+
+### 以太坊区块链 -- 学习
+http://blog.csdn.net/fidelhl/article/category/6060944
