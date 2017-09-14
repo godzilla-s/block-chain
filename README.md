@@ -14,3 +14,6 @@ http://blog.csdn.net/u014409380/article/details/53522581
 
 以太坊学习随笔：
 http://www.cnblogs.com/baizx/category/1011749.html 
+
+以太坊源码区块结构说明：
+http://blog.csdn.net/ddffr/article/details/74389051
