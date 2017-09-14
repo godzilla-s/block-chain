@@ -49,3 +49,5 @@ http://blog.csdn.net/fidelhl/article/category/6060944
 区块链入门 ： http://www.cnblogs.com/zl03jsj/p/6819333.html
 
 以太坊智能合约编程之菜鸟教程（简单例子） http://blog.csdn.net/xxxslinyue/article/details/70881030
+
+以太坊研究： http://blog.csdn.net/DDFFR/article/category/6601839/1 
