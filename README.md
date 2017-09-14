@@ -11,3 +11,6 @@ Solidity 在线编辑工具： https://ethereum.github.io/browser-solidity/#vers
 
 以太坊搭载私有连：
 http://blog.csdn.net/u014409380/article/details/53522581
+
+以太坊学习随笔：
+http://www.cnblogs.com/baizx/category/1011749.html 
