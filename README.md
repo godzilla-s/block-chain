@@ -17,3 +17,6 @@ http://www.cnblogs.com/baizx/category/1011749.html
 
 以太坊源码区块结构说明：
 http://blog.csdn.net/ddffr/article/details/74389051
+
+Hyperledger Fabric V1.0 环境搭建：
+https://segmentfault.com/a/1190000009072224
