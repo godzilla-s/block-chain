@@ -20,3 +20,6 @@ http://blog.csdn.net/ddffr/article/details/74389051
 
 Hyperledger Fabric V1.0 环境搭建：
 https://segmentfault.com/a/1190000009072224
+
+简单理解区块链技术: 
+https://github.com/liuchengxu/blockchain-tutorial
