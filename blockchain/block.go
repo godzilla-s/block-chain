@@ -5,30 +5,31 @@ import (
 	"bytes"
 	"crypto/sha256"
 	"time"
-	"strconv"
+	_ "strconv"
 	"log"
-
-	// 引入数据库 
-	_ "github.com/syndtr/goleveldb/leveldb"
 )
 
 // 区块 
 // 添加Nonce, 对工作量证明验证时用到 
+// 添加交易 
 type Block struct {
 	PrevBlockHash 		[]byte  // 上一个区块Hash
-	Hash 				[]byte
-	Data 				[]byte 
+	Hash 				[]byte  // 当前Hash
+	// Data 				[]byte 
+	Transactions 		[]*Transaction  // 交易
 	Timestamp 			int64
 	Nonce 				int 
 }
 
 // 新建一个区块 
 // 默认Nonce为0 
-func NewBlock(data string, prevBlockHash []byte) *Block {
+//func NewBlock(data string, prevBlockHash []byte) *Block {
+func NewBlock(transactions []*Transaction, prevBlockHash []byte) *Block {
 	block := &Block {
 		PrevBlockHash: 	prevBlockHash,  // 前一区块的Hash
 		Hash:		   	[]byte{},		// 当前区块的Hash
-		Data:			[]byte(data),	// 数据
+		// Data:			[]byte(data),	// 数据
+		Transactions:	transactions,
 		Timestamp:		time.Now().Unix(),  // 时间戳
 		Nonce: 			0,
 	}
@@ -44,6 +45,7 @@ func NewBlock(data string, prevBlockHash []byte) *Block {
 }
 
 // 设置当前区块Hash
+/*
 func (b *Block) SetHash() {
 	timestamp := []byte(strconv.FormatInt(b.Timestamp, 10))
 	headers := bytes.Join([][]byte{b.PrevBlockHash, b.Data, timestamp}, []byte{})
@@ -51,11 +53,7 @@ func (b *Block) SetHash() {
 
 	b.Hash = hash[:]
 }
-
-// 创世区块 
-func NewGenesisBlock() *Block {
-	return NewBlock("Genesis Block", []byte{})
-}
+*/
 
 // 将Block序列转化为字节数据
 func (b *Block) Serialize() []byte {
@@ -83,16 +81,22 @@ func DeserialBlock(d []byte) *Block {
 	return &block
 }
 
-type BlockChain struct {
-	blocks []*Block 
+// 创世区块 
+func NewGenesisBlock(coinbase *Transaction) *Block {
+	// return NewBlock("Genesis Block", []byte{}) //version 1
+	return NewBlock([]*Transaction{coinbase}, []byte{})
 }
 
-func NewBlockChain() *BlockChain {
-	return &BlockChain{[]*Block{NewGenesisBlock()}}
+// 计算区块里所有交易Hash
+func (b *Block) HashTransactions() []byte {
+	var txHashes  	[][]byte
+	var txHash 		[32]byte 
+
+	for _, tx := range b.Transactions {
+		txHashes = append(txHashes, tx.ID)
+	}
+
+	txHash = sha256.Sum256(bytes.Join(txHashes, []byte{}))
+	return txHash[:]
 }
 
-func (bc *BlockChain) AddBlock(data string) {
-	prevBlock := bc.blocks[len(bc.blocks)-1] 
-	newBlock := NewBlock(data, prevBlock.Hash)
-	bc.blocks = append(bc.blocks, newBlock)
-}
